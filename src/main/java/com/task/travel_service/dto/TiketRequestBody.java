@@ -1,4 +1,4 @@
-package com.task.travel_service.request;
+package com.task.travel_service.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +15,7 @@ public class TiketRequestBody {
     @JsonProperty(value = "jadwal")
     @NotBlank
     @JsonFormat(pattern="yyyy-MM-dd HH:mm")
-    private String Jadwal;
+    private String jadwal;
 
 
     public Long getIdPenumpang() {
@@ -29,6 +29,6 @@ public class TiketRequestBody {
 
 
     public String getJadwal() {
-        return Jadwal;
+        return jadwal;
     }
 }
