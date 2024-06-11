@@ -3,13 +3,14 @@ package com.task.travel_service.request;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class TiketRequestBody {
     @JsonProperty(value = "id_penumpang")
-    @NotBlank
+    @NotNull
     private Long idPenumpang;
     @JsonProperty(value = "id_travel")
-    @NotBlank
+    @NotNull
     private Long idTravel;
     @JsonProperty(value = "jadwal")
     @NotBlank
