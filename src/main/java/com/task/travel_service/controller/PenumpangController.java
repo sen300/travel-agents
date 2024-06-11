@@ -46,7 +46,7 @@ public class PenumpangController {
     @DeleteMapping("/penumpang/{id}")
     public ResponseEntity<ResponseSuccess> deletePenumpang(@PathVariable("id") Long id)  throws
             DataNotFoundException {
-        return ResponseEntity.ok(service.deletePenumpang(id));
+        return new ResponseEntity<>(service.deletePenumpang(id), HttpStatus.ACCEPTED);
     }
 
 }

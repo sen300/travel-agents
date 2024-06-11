@@ -1,13 +1,10 @@
 package com.task.travel_service.service;
 
 import com.task.travel_service.dto.ResponseSuccess;
-import com.task.travel_service.entity.PenumpangEntity;
 import com.task.travel_service.entity.TravelEntity;
 import com.task.travel_service.exception.DataNotFoundException;
 import com.task.travel_service.repository.TravelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,6 +49,10 @@ public class TravelService {
     }
 
     public ResponseSuccess deleteTravel(Long id) {
+        Optional<TravelEntity> travelEntityOptional = travelRepository.findById(id);
+        if (!travelEntityOptional.isPresent()) {
+            throw new DataNotFoundException("Travel not found, id: "+ id);
+        }
         travelRepository.deleteById(id);
         return new ResponseSuccess("Success", "Data berhasil dihapus", 200);
     }

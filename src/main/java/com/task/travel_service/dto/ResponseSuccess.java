@@ -1,8 +1,11 @@
 package com.task.travel_service.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ResponseSuccess {
     private String status;
     private String message;
+
     private int code;
 
     public ResponseSuccess(String status, String message, int code) {
@@ -21,5 +24,17 @@ public class ResponseSuccess {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public int getCode() {
+        return code;
     }
 }

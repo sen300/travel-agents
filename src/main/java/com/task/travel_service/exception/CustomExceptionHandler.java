@@ -6,6 +6,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.NotAcceptableStatusException;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -34,6 +35,20 @@ public class CustomExceptionHandler {
                 e.getMessage(),
                 e,
                 HttpStatus.INTERNAL_SERVER_ERROR,
+                ZonedDateTime.now(ZoneId.of("Asia/Jakarta"))
+        );
+
+        return new ResponseEntity<>(apiException, status);
+    }
+
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    @ExceptionHandler(value = {NotAcceptableStatusException.class})
+    public ResponseEntity<Object> handleNotAcceptableException(NotAcceptableStatusException e) {
+        HttpStatus status = HttpStatus.NOT_ACCEPTABLE;
+        ApiException apiException = new ApiException(
+                e.getMessage(),
+                e,
+                status,
                 ZonedDateTime.now(ZoneId.of("Asia/Jakarta"))
         );
 

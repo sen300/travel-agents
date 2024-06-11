@@ -42,7 +42,7 @@ public class TravelController {
 
     @DeleteMapping("/travel/{id}")
     public ResponseEntity<ResponseSuccess> deleteTravel(@PathVariable("id") Long id)  throws DataNotFoundException{
-        return ResponseEntity.ok(service.deleteTravel(id));
+        return new ResponseEntity<>(service.deleteTravel(id), HttpStatus.ACCEPTED);
     }
 
 }
