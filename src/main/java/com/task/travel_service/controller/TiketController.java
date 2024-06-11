@@ -6,7 +6,7 @@ import com.task.travel_service.entity.TravelEntity;
 import com.task.travel_service.repository.PenumpangRepository;
 import com.task.travel_service.repository.TiketRepository;
 import com.task.travel_service.repository.TravelRepository;
-import com.task.travel_service.request.TiketRequestBody;
+import com.task.travel_service.dto.TiketRequestBody;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
