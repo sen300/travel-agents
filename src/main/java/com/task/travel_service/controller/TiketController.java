@@ -62,4 +62,9 @@ public class TiketController {
             DataNotFoundException {
         return new ResponseEntity<>(service.deleteTiket(id), HttpStatus.ACCEPTED);
     }
+
+    @GetMapping("/tiket/penumpang/{id}")
+    public ResponseEntity<List<TiketEntity>> getTiketByPenumpangId(@PathVariable("id") Long id) throws DataNotFoundException {
+        return ResponseEntity.ok(service.getTiketByPenumpangId(id));
+    }
 }

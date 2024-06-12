@@ -13,15 +13,18 @@ import java.time.ZonedDateTime;
 
 @RestControllerAdvice
 public class CustomExceptionHandler {
+
+    private final String failed = "Failed";
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     public ResponseEntity<Object> handleBadRequestException(MethodArgumentNotValidException e) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
         ApiException apiException = new ApiException(
                 e.getMessage(),
-                e,
-                HttpStatus.BAD_REQUEST,
-                ZonedDateTime.now(ZoneId.of("Asia/Jakarta"))
+                ZonedDateTime.now(ZoneId.of("Asia/Jakarta")),
+                failed,
+                400
         );
 
         return new ResponseEntity<>(apiException, status);
@@ -33,9 +36,9 @@ public class CustomExceptionHandler {
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         ApiException apiException = new ApiException(
                 e.getMessage(),
-                e,
-                HttpStatus.INTERNAL_SERVER_ERROR,
-                ZonedDateTime.now(ZoneId.of("Asia/Jakarta"))
+                ZonedDateTime.now(ZoneId.of("Asia/Jakarta")),
+                failed,
+                500
         );
 
         return new ResponseEntity<>(apiException, status);
@@ -47,9 +50,9 @@ public class CustomExceptionHandler {
         HttpStatus status = HttpStatus.NOT_ACCEPTABLE;
         ApiException apiException = new ApiException(
                 e.getMessage(),
-                e,
-                status,
-                ZonedDateTime.now(ZoneId.of("Asia/Jakarta"))
+                ZonedDateTime.now(ZoneId.of("Asia/Jakarta")),
+                failed,
+                406
         );
 
         return new ResponseEntity<>(apiException, status);

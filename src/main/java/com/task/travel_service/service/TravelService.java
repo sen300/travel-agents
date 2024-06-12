@@ -29,6 +29,12 @@ public class TravelService {
     }
 
     public TravelEntity saveTravel(TravelEntity travel) {
+        String nomorDepanLama = travel.getNoTelp().substring(0,2);
+        if (nomorDepanLama.equals("62")){
+            String nomorDepan = "0";
+            String noTelp = nomorDepan + travel.getNoTelp().substring(2);
+            travel.setNoTelp(noTelp);
+        }
         return travelRepository.save(travel);
     }
 

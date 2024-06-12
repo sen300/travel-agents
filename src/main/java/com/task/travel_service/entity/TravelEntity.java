@@ -30,7 +30,7 @@ public class TravelEntity {
     @Size(min = 10, max = 13)
     @NotBlank
     @Pattern(regexp = "^[0-9]+$", message = "The value must be a positive integer")
-    @Column(name = "no_telp", nullable = false)
+    @Column(name = "no_telp", nullable = false, unique = true)
     @JsonProperty(value = "no_telp")
     private String noTelp;
 

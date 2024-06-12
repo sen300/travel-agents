@@ -95,4 +95,20 @@ public class TiketService {
         travelRepository.deleteById(id);
         return new ResponseSuccess("Success", "Data berhasil dihapus", 200);
     }
+
+    public List<TiketEntity> getTiketByPenumpangId (Long id) {
+        Optional<PenumpangEntity> penumpangEntityOptional = penumpangRepository.findById(id);
+        if (penumpangEntityOptional.isEmpty()) {
+            throw new DataNotFoundException("Penumpang not found, id: "+id);
+        }
+
+        Optional<List<TiketEntity>> optionalTiketEntityList =
+                tiketRepository.findByPenumpang(penumpangEntityOptional.get());
+        if (optionalTiketEntityList.isEmpty()) {
+            throw new DataNotFoundException("Tiket not found, id: "+id);
+        }
+
+        return optionalTiketEntityList.get();
+
+    }
 }
